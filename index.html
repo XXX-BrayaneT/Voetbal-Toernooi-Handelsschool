@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8">
+  <title>Voetbaltoernooi – Handelsschool</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="index.css">
+  <script src="https://kit.fontawesome.com/841326a54b.js" crossorigin="anonymous"></script>
+  <script src="index.js" defer></script>
+  
+
+</head>
+
+<body>
+
+<header>
+
+  <h1> <img src="logo handelsschool2.png" alt="Logo" style="height: 30px; vertical-align: middle; margin-right: 10px;"> Voetbal Handelsschool </h1>
+  <div class="menu-toggle" onclick="toggleMenu()">☰</div>
+  <nav id="nav-menu">
+    <a href="#home" onclick="toggleMenu()">Home</a>
+    <a href="#regels" onclick="toggleMenu()">Reglement</a>
+    <a href="#inschrijving" onclick="toggleMenu()">Inschrijving</a>
+    <a href="#resultaten" onclick="toggleMenu()">Resultaten</a>
+  </nav>
+</header>
+
+<!-- HOME -->
+
+<section id="home">
+  <div class="hero">
+    <h2>Schoolvoetbal<br><span>Handelsschool</span></h2>
+    <p>Fair-play, respect en teamgeest tijdens de middagpauze.</p>
+    <button onclick="location.href='#inschrijving'">Schrijf je team in</button>
+  </div>
+</section>
+
+<!-- REGELS -->
+<section id="regels">
+  <h2>📜 Wedstrijdreglement</h2>
+  <div class="card">
+    <p>Het toernooi is toegankelijk voor alle leerlingen en leerkrachten. Teams bestaan uit maximaal 7 spelers met 1 kapitein.</p>
+  </div>
+  <div class="card">
+  <h3>Wedstrijdvorm</h3>
+  <p>5 tegen 5 (4 spelers + 1 keeper), wedstrijden van 2 × 5 minuten, onbeperkt wisselen.</p>
+</div>
+
+<div class="card">
+  <h3>Discipline & Veiligheid</h3>
+  <p>Respect is verplicht, geen gevaarlijke tackles, schone sportschoenen, sieraden verboden.</p>
+</div>
+</section>
+
+<!-- INSCHRIJVING -->
+<section id="inschrijving">
+  <h2>📝 Teaminschrijving</h2>
+
+  <form id="teamForm">
+    <h3>Teamgegevens</h3>
+    <div class="grid">
+      <input type="text" id="TeamNaam" placeholder="Teamnaam" required>
+      <input type="email" id="KapiteinEmail" placeholder="Schoolmail kapitein" required>
+    </div>
+
+    <h3>Kapitein</h3>
+    <div class="grid">
+      <input type="text" id="KapiteinNaam" placeholder="Naam" required>
+      <input type="text" id="KapiteinVoornaam" placeholder="Voornaam" required>
+      <input type="text" id="KapiteinKlas" placeholder="Klas" required>
+      <input type="text" value="Kapitein" disabled>
+    </div>
+
+    <h3>Spelers (max. 6 extra – max. 2 wissels)</h3>
+    <p>Voeg spelers toe tot je team compleet is.</p>
+
+    <div id="players"></div>
+
+    <button type="button" class="add" onclick="addPlayer()">➕ Speler toevoegen</button>
+    <button type="submit" class="submit" id="submitBtn">Team inschrijven</button>
+  </form>
+</section>
+
+<!-- RESULTATEN -->
+<section id="resultaten">
+  <h2>📊 Klassement</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>Team</th>
+        <th>MJ</th>
+        <th>W</th>
+        <th>G</th>
+        <th>V</th>
+        <th>+/-</th>
+        <th>Punten</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+</section>
+
+<footer>
+  <div class="footer-content">
+    
+    <p> © 
+      <a href="https://www.instagram.com/brayaneftchrome7">
+        <i class="fa-brands fa-instagram fa-lg" style="color: #63E6BE;"> </i> 
+        Brayane.T 6ADB - 2026 
+      </a>  
+      <strong>Voetbaltoernooi Handelsschool</strong>
+      
+    </p>
+  
+    <p class="subtitle">Een initiatief van de Leerlingenraad | Schoolproject</p>
+  </div>
+</footer>
+
+
+
+</body>
+</html>
