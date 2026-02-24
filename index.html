@@ -23,6 +23,7 @@
     <a href="#home" onclick="toggleMenu()">Home</a>
     <a href="#regels" onclick="toggleMenu()">Reglement</a>
     <a href="#inschrijving" onclick="toggleMenu()">Inschrijving</a>
+    <a href="#teams-section" onclick="toggleMenu()">Teams</a>
     <a href="#resultaten" onclick="toggleMenu()">Resultaten</a>
   </nav>
 </header>
@@ -31,8 +32,12 @@
 
 <section id="home">
   <div class="hero">
-    <h2>Schoolvoetbal<br><span>Handelsschool</span></h2>
-    <p>Fair-play, respect en teamgeest tijdens de middagpauze.</p>
+    <h2>VoetbalToernooi<br><span>   Handelsschool</span></h2>
+    <p>Het veld wacht op jou! Heb jij wat nodig is om de beker te pakken? 🔥 
+      De strijd begint hier, powered by de <strong>Leerlingenraad</strong>.
+
+   
+</p>
     <button onclick="location.href='#inschrijving'">Schrijf je team in</button>
   </div>
 </section>
@@ -40,47 +45,111 @@
 <!-- REGELS -->
 <section id="regels">
   <h2>📜 Wedstrijdreglement</h2>
-  <div class="card">
-    <p>Het toernooi is toegankelijk voor alle leerlingen en leerkrachten. Teams bestaan uit maximaal 7 spelers met 1 kapitein.</p>
-  </div>
-  <div class="card">
-  <h3>Wedstrijdvorm</h3>
-  <p>5 tegen 5 (4 spelers + 1 keeper), wedstrijden van 2 × 5 minuten, onbeperkt wisselen.</p>
-</div>
 
-<div class="card">
-  <h3>Discipline & Veiligheid</h3>
-  <p>Respect is verplicht, geen gevaarlijke tackles, schone sportschoenen, sieraden verboden.</p>
-</div>
+  <div class="card">
+    <h3>👥 Teams & Deelname</h3>
+    <p>Het toernooi staat open voor alle <strong>leerlingen en leerkrachten</strong> van PHH.</p>
+    <ul>
+      <li><strong>Samenstelling:</strong> Maximaal 7 spelers per team (5 op het veld + 2 wissels).</li>
+      <li><strong>Kapitein:</strong> Verantwoordelijk voor de inschrijving en communicatie.</li>
+      <li><strong>E-mail:</strong> Inschrijven kan enkel met je officieel <strong>@phh.be</strong> adres.</li>
+      <li><strong>Mixte:</strong> Gemengde teams (M/V) worden sterk aangemoedigd!</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h3>⚽ Wedstrijd & Toernooi</h3>
+    <p>We spelen <strong>5 tegen 5</strong> (4 veldspelers + 1 keeper) in de sporthal.</p>
+    <ul>
+      <li><strong>Duur:</strong> 2 × 5 minuten (pauze van 1 minuut).</li>
+      <li><strong>Punten:</strong> Winst = 3 ptn | Gelijk = 1 pt | Verlies = 0 ptn.</li>
+      <li><strong>Systeem:</strong> Eerst een poulefase, gevolgd door rechtstreekse uitschakeling.</li>
+      <li><strong>Wissels:</strong> Onbeperkt, maar enkel tijdens een spelonderbreking.</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h3>🕒 Timing & Locatie</h3>
+    <p>De wedstrijden gaan door op <strong>dinsdag en donderdag</strong> tijdens de middagpauze.</p>
+    <div class="schedule">
+      <p><strong>12u05:</strong> Toegang kleedkamers</p>
+      <p><strong>12u15:</strong> Start wedstrijd</p>
+      <p><strong>12u45:</strong> Einde & opruimen</p>
+      <p><strong>12u50:</strong> Terug op de speelplaats</p>
+    </div>
+    <p><em>*Wees op tijd! Meer dan 5 min te laat = Forfait (0-3).</em></p>
+  </div>
+
+  <div class="card">
+    <h3>🤝 Fair-Play & Materiaal</h3>
+    <ul>
+      <li><strong>Schoenen:</strong> Propere <strong>sportschoenen voor binnen</strong> zijn verplicht.</li>
+      <li><strong>Veiligheid:</strong> Juwelen af, scheenbeschermers aanbevolen.</li>
+      <li><strong>Respect:</strong> Geen tackles, geen beledigingen. Respect voor de scheidsrechter (leerkrachten of leerlingen) is de basis.</li>
+      <li><strong>Sancties:</strong> Geel = 2 min aan de kant. Rood = uitsluiting van het toernooi.</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h3>🏆 Beloning & Sfeer</h3>
+    <p>De winnaars krijgen een <strong>mooie beker</strong> en een ereplaats op de schoolmuur met een officiële groepsfoto. Geniet ook van de muziek tijdens de wedstrijden!</p>
+    <p><strong>Netheid:</strong> Laat de zaal en de kleedkamers kraaknet achter.</p>
+  </div>
 </section>
 
-<!-- INSCHRIJVING -->
+
+
 <section id="inschrijving">
   <h2>📝 Teaminschrijving</h2>
 
   <form id="teamForm">
-    <h3>Teamgegevens</h3>
+    <h3>1. Teamgegevens</h3>
     <div class="grid">
-      <input type="text" id="TeamNaam" placeholder="Teamnaam" required>
-      <input type="email" id="KapiteinEmail" placeholder="Schoolmail kapitein" required>
+      <input type="text" id="TeamNaam" placeholder="Teamnaam" minlength="3" maxlength="20" required>
+      <input type="email" id="KapiteinEmail" placeholder="naam@phh.be" pattern=".+@phh\.be" title="Gebruik enkel je schoolmail (@phh.be)" required>
     </div>
 
-    <h3>Kapitein</h3>
+    <h3>2. Kapitein (Jij bent de contactpersoon)</h3>
     <div class="grid">
-      <input type="text" id="KapiteinNaam" placeholder="Naam" required>
-      <input type="text" id="KapiteinVoornaam" placeholder="Voornaam" required>
-      <input type="text" id="KapiteinKlas" placeholder="Klas" required>
-      <input type="text" value="Kapitein" disabled>
+      <input type="text" id="KapiteinNaam" placeholder="Naam" maxlength="25" required>
+      <input type="text" id="KapiteinVoornaam" placeholder="Voornaam" maxlength="25" required>
+      <input type="text" id="KapiteinKlas" placeholder="Klas (bijv. 6ADB)" maxlength="10" required>
+      <input type="text" value="Functie: Kapitein" disabled style="background: #eee; font-weight: bold;">
     </div>
 
-    <h3>Spelers (max. 6 extra – max. 2 wissels)</h3>
-    <p>Voeg spelers toe tot je team compleet is.</p>
+  
+    <div class="players-section-header">
+      <h3>3. Spelers (Je teamgenoten)</h3>
+      <p>Voeg hier de overige spelers toe (maximaal 6 extra).</p>
+      <div id="player-counter" style="display: inline-block; padding: 5px 10px; background: var(--primary); color: white; border-radius: 5px; margin-top: 10px;">
+        Totaal team: <span id="current-count">1</span> / 7 spelers
+      </div>
+    </div>
 
-    <div id="players"></div>
+    <div id="players">
+      </div>
 
-    <button type="button" class="add" onclick="addPlayer()">➕ Speler toevoegen</button>
-    <button type="submit" class="submit" id="submitBtn">Team inschrijven</button>
+    <div style="margin-top: 20px;">
+      <button type="button" class="add" onclick="addPlayer()" style="width: 100%; border: 2px dashed var(--accent); background: transparent; color: var(--primary);">
+        ➕ Speler toevoegen
+      </button>
+      
+      <p style="font-size: 12px; color: #666; margin: 15px 0;">
+        *Let op: Een team bestaat uit 5 basisspelers en maximaal 2 wissels.
+      </p>
+
+      <button type="submit" class="submit" id="submitBtn">Mijn team officieel inschrijven</button>
+    </div>
   </form>
+</section>
+
+<section id="teams-section">
+  <h2>🛡️ Deelnemende Teams</h2>
+  <p style="margin-bottom: 20px;">Ontdek Alle teams !</p>
+  
+  <div id="teams-container" class="grid">
+    <p>Teams laden...</p>
+  </div>
 </section>
 
 <!-- RESULTATEN -->

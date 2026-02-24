@@ -39,6 +39,96 @@ footer a {
   color: aliceblue;
 }
 
+
+.card ul {
+  list-style-type: none;
+  padding-left: 0;
+  margin-top: 10px;
+}
+
+.card ul li {
+  margin-bottom: 8px;
+  padding-left: 20px;
+  position: relative;
+}
+
+
+.players-header {
+  display: flex;
+  flex-direction: column;
+  margin-top: 30px;
+  border-top: 2px solid #eee;
+  padding-top: 20px;
+}
+
+.team-status {
+  align-self: flex-start;
+  background: var(--primary);
+  color: white;
+  padding: 5px 15px;
+  border-radius: 20px;
+  font-size: 14px;
+  font-weight: 600;
+  margin: 10px 0;
+}
+
+.add-btn {
+  background: white;
+  color: var(--secondary);
+  border: 2px dashed var(--secondary);
+  width: 100%;
+  padding: 12px;
+  border-radius: 10px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: 0.3s;
+  margin-bottom: 20px;
+}
+
+.add-btn:hover {
+  background: var(--light);
+  border-style: solid;
+}
+
+.form-footer-info {
+  background: #e9ecef;
+  padding: 10px;
+  border-radius: 8px;
+  font-size: 13px;
+  color: #666;
+  margin-bottom: 20px;
+}
+
+.form-footer-info i {
+  color: var(--primary);
+  margin-right: 5px;
+}
+.card ul li::before {
+  content: "▹";
+  position: absolute;
+  left: 0;
+  color: var(--accent);
+  font-weight: bold;
+}
+
+.schedule {
+  background: var(--light);
+  padding: 10px;
+  border-radius: 8px;
+  margin: 10px 0;
+  border-left: 4px solid var(--accent);
+}
+
+.schedule p {
+  margin: 5px 0;
+  font-family: monospace; /* Pour un look "horloge" */
+}
+
+
+
+
+
+
 header h1 {
   color: white;
   font-size: 22px;
@@ -212,6 +302,36 @@ footer {
   text-align: center;
   padding: 20px;
 }
+
+/* ===== EFFETS SUR LE CLASSEMENT ===== */
+#resultaten tbody tr {
+  transition: all 0.2s ease-in-out;
+  cursor: pointer;
+  border-bottom: 1px solid #eee;
+}
+
+/* Survol de la souris (Hover) */
+#resultaten tbody tr:hover {
+  background-color: rgba(32, 201, 151, 0.15); /* Vert clair transparent (--accent) */
+  transform: scale(1.01); /* Léger zoom */
+}
+
+/* Le 1er du classement (Le grand Leader) */
+#resultaten tbody tr:nth-child(1) {
+  background-color: rgba(25, 135, 84, 0.1); /* Fond légèrement vert */
+  border-left: 5px solid var(--secondary); /* Grosse ligne verte à gauche */
+}
+
+/* Ajout automatique de la coupe pour le premier */
+#resultaten tbody tr:nth-child(1) td:first-child::before {
+  content: "🏆 ";
+}
+
+/* Le tout dernier du classement (Zone rouge) */
+#resultaten tbody tr:last-child {
+  border-left: 5px solid var(--danger); /* Petite ligne rouge */
+}
+
 
 /* ===== MOBILE DESIGN (Max 768px) ===== */
 @media (max-width: 768px) {
