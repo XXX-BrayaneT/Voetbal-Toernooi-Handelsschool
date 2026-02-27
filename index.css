@@ -7,6 +7,10 @@
   --danger: #dc3545;
 }
 
+html, body {
+  max-width: 100%;
+  overflow-x: hidden; /* Empêche le scroll vers la droite */
+}
 * {
   margin: 0;
   padding: 0;
@@ -125,6 +129,183 @@ footer a {
 }
 
 
+/* ===== PLAYOFFS: PREMIUM DARK DESIGN ===== */
+
+/* Section sombre pour faire ressortir le tableau */
+.dark-section {
+  background: radial-gradient(circle at center, #1a1a1a 0%, #000 100%);
+  color: #eee;
+  padding: 80px 20px;
+  border-top: 3px solid var(--accent);
+  border-bottom: 3px solid var(--accent);
+}
+
+.dark-section h2 {
+  color: #fff;
+  text-shadow: 0 0 10px rgba(32, 201, 151, 0.5); /* Effet néon vert */
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+/* Container pour le scroll horizontal sur mobile */
+.tournament-container {
+  width: 100%;
+  overflow-x: auto;
+  padding: 20px 0;
+}
+
+.bracket {
+  display: flex;
+  gap: 0; /* Pas d'espace, on gère avec les marges des rounds */
+  min-width: 1000px; /* Force la largeur pour le scroll */
+  justify-content: center;
+}
+
+.round {
+  display: flex;
+  flex-direction: column;
+  justify-content: center; /* Centre verticalement les matchs */
+  width: 220px;
+}
+
+.round h3 {
+  font-size: 16px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: var(--accent);
+  text-align: center;
+  margin-bottom: 30px;
+  font-weight: 700;
+}
+
+/* Le bloc contenant les deux équipes d'un match */
+.match-block {
+  display: flex;
+  flex-direction: column;
+  background: rgba(255,255,255,0.03); /* Fond très léger */
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 8px;
+  margin: 15px 10px; /* Espace entre les matchs */
+  position: relative;
+  transition: all 0.3s ease;
+}
+
+.match-block:hover {
+  background: rgba(255,255,255,0.08);
+  border-color: var(--accent);
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(32, 201, 151, 0.2);
+}
+
+/* Style d'une équipe dans un slot */
+.team {
+  padding: 12px 15px;
+  font-size: 14px;
+  font-weight: 600;
+  color: #ccc;
+  position: relative;
+  display: flex;
+  justify-content: space-between; /* Nom à gauche, score à droite */
+  align-items: center;
+}
+
+.team.top {
+  border-bottom: 1px solid rgba(255,255,255,0.1);
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+}
+
+.team.bottom {
+  border-bottom-left-radius: 8px;
+  border-bottom-right-radius: 8px;
+}
+
+/* Style pour l'équipe qui a gagné le match */
+.team.winner {
+  color: #fff;
+  background: rgba(32, 201, 151, 0.15); /* Vert transparent */
+}
+
+.team.winner::before {
+  content: "✓"; /* Petit checkmark */
+  position: absolute;
+  left: -20px;
+  color: var(--accent);
+  font-weight: bold;
+}
+
+/* Style du score */
+.score {
+  font-family: 'monospace';
+  font-weight: 700;
+  background: rgba(0,0,0,0.3);
+  padding: 2px 6px;
+  border-radius: 4px;
+  color: var(--accent);
+}
+
+/* ===== FINALE ET TROPHÉE ===== */
+.final-block {
+  border: 2px solid #ffd700; /* Bordure dorée */
+  background: rgba(255, 215, 0, 0.05);
+}
+
+.grand-finalist {
+  font-size: 16px;
+  color: #fff;
+  text-transform: uppercase;
+}
+
+.trophy-box {
+  text-align: center;
+  margin-top: 30px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.trophy {
+  font-size: 60px;
+  margin-bottom: 10px;
+  filter: drop-shadow(0 0 10px #ffd700);
+  animation: trophy-glow 2s infinite alternate;
+}
+
+.champion-name {
+  font-size: 18px;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: #ffd700; /* Couleur dorée */
+  letter-spacing: 3px;
+  border: 1px solid #ffd700;
+  padding: 10px 20px;
+  border-radius: 30px;
+  background: rgba(255, 215, 0, 0.1);
+}
+
+@keyframes trophy-glow {
+  from { filter: drop-shadow(0 0 5px #ffd700); }
+  to { filter: drop-shadow(0 0 20px #ffae00); }
+}
+
+/* ===== LIGNES DE CONNEXION (PC uniquement) ===== */
+@media (min-width: 769px) {
+  /* Connection vers la droite (Quarts -> Demis, Demis -> Finale) */
+  .achtste .match-block::after {
+    content: ""; position: absolute; right: -11px; top: 50%;
+    width: 10px; height: 2px; background: rgba(255,255,255,0.2);
+  }
+  
+  .kwart .match-block::after {
+    content: ""; position: absolute; right: -11px; top: 50%;
+    width: 10px; height: 2px; background: rgba(255,255,255,0.2);
+  }
+
+  .halve .match-block::after {
+    content: ""; position: absolute; right: -11px; top: 50%;
+    width: 10px; height: 2px; background: rgba(255,255,255,0.2);
+  }
+}
 
 
 
@@ -185,39 +366,141 @@ th {
   padding: 100px 2% 80px; /* Moins de marge sur les côtés */
 }
 
-/* ===== HERO ===== */
-#home {
-  min-height: 100vh;
-  background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)),
-  url("groene\ speelplaats.png") center/cover no-repeat fixed ;
+/* ===== PURE CSS REACTIVE HERO ===== */
+.pure-css-hero {
+  height: 100vh;
   display: flex;
   align-items: center;
-  color: white;
+  justify-content: center;
+  background: #0b2e13; /* Fond sombre de secours */
+  overflow: hidden;
+  position: relative;
 }
 
-.hero {
-  max-width: 600px;
+/* Fond animé qui bouge tout seul */
+.background-animate {
+  position: absolute;
+  width: 120%;
+  height: 120%;
+  background: radial-gradient(circle at center, rgba(32, 201, 151, 0.2) 0%, transparent 50%),
+              url("groene\ speelplaats.png") center/cover no-repeat;
+  filter: brightness(0.4);
+  animation: bgPan 20s linear infinite;
+  z-index: 1;
 }
 
-.hero h2 {
-  font-size: 48px;
-  color: white;
+@keyframes bgPan {
+  0% { transform: scale(1) rotate(0deg); }
+  50% { transform: scale(1.1) rotate(1deg); }
+  100% { transform: scale(1) rotate(0deg); }
 }
 
-.hero span {
+/* --- LA CARTE RÉACTIVE --- */
+.hero-box {
+  position: relative;
+  z-index: 10;
+  padding: 60px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 40px;
+  backdrop-filter: blur(10px);
+  text-align: center;
+  transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1); /* Transition ultra douce */
+  transform: translateY(0);
+}
+
+/* EFFET RÉACTIF : La carte s'anime au survol de la SECTION */
+.pure-css-hero:hover .hero-box {
+  transform: translateY(-20px) scale(1.02);
+  background: rgba(255, 255, 255, 0.08);
+  border-color: var(--accent);
+  box-shadow: 0 40px 80px rgba(0, 0, 0, 0.6), 
+              0 0 30px rgba(32, 201, 151, 0.2);
+}
+
+.top-label {
   color: var(--accent);
+  font-weight: 700;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  font-size: 14px;
+  opacity: 0.8;
 }
 
-.hero button {
-  margin-top: 25px;
-  padding: 15px 30px;
+.hero-box h2 {
+  font-size: 5rem;
+  font-weight: 900;
+  color: #fff;
+  line-height: 0.85;
+  margin: 20px 0;
+  transition: transform 0.6s ease;
+}
+
+.accent-text {
+  color: var(--accent);
+  -webkit-text-stroke: 1px var(--accent);
+  /* Effet de texte vide pour le style */
+  background: linear-gradient(to bottom, var(--accent) 50%, transparent 50%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  transition: all 0.6s ease;
+}
+
+/* Le texte s'illumine quand on survole la carte */
+.hero-box:hover .accent-text {
+  color: var(--accent);
+  background: none;
+  -webkit-text-fill-color: var(--accent);
+  text-shadow: 0 0 20px rgba(32, 201, 151, 0.5);
+}
+
+.hero-box p {
+  font-size: 1.2rem;
+  color: #ccc;
+  margin-bottom: 30px;
+}
+
+/* --- BOUTON GLASS --- */
+.glass-btn {
+  padding: 20px 50px;
   background: var(--accent);
+  color: white;
   border: none;
-  border-radius: 30px;
-  font-weight: 600;
+  border-radius: 15px;
+  font-size: 1.2rem;
+  font-weight: 800;
+  text-transform: uppercase;
   cursor: pointer;
+  position: relative;
+  transition: 0.4s ease;
+  overflow: hidden;
 }
 
+.glass-btn:hover {
+  letter-spacing: 2px;
+  background: #fff;
+  color: var(--primary);
+  transform: scale(1.1);
+  box-shadow: 0 10px 30px rgba(255, 255, 255, 0.3);
+}
+
+/* Petit éclat de lumière qui traverse le bouton automatiquement */
+.glass-btn::after {
+  content: '';
+  position: absolute;
+  top: -50%; left: -60%;
+  width: 20%; height: 200%;
+  background: rgba(255, 255, 255, 0.4);
+  transform: rotate(30deg);
+  animation: shine 4s infinite;
+}
+
+@keyframes shine {
+  0% { left: -60%; }
+  20% { left: 120%; }
+  100% { left: 120%; }
+}
 /* ===== CARD ===== */
 .card {
   background: white;
@@ -390,3 +673,363 @@ footer {
     padding: 100px 5% 40px;
   }
 } 
+
+/* ===== MOBILE DESIGN OPTIMISÉ (Max 768px) ===== */
+@media (max-width: 768px) {
+  /* 1. Header & Navigation */
+  header {
+    padding: 10px 20px;
+  }
+
+  header h1 {
+    font-size: 18px; /* Plus compact */
+  }
+
+  .menu-toggle {
+    display: block;
+  }
+
+  nav {
+    display: none;
+    flex-direction: column;
+    width: 100%;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background: linear-gradient(180deg, var(--primary), var(--dark));
+    padding: 20px 0;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.4);
+    border-top: 1px solid rgba(255,255,255,0.1);
+  }
+
+  nav.active {
+    display: flex;
+    animation: fadeInDown 0.3s ease-in-out;
+  }
+
+  nav a {
+    margin: 15px 0;
+    margin-left: 0;
+    text-align: center;
+    font-size: 18px;
+    letter-spacing: 1px;
+  }
+
+  /* 2. Hero Section (Le rendu "époustouflant" sur mobile) */
+  .hero-box {
+    padding: 40px 20px; /* Moins de padding interne */
+    width: 95%; /* Prend plus de place sur petit écran */
+    border-radius: 25px;
+  }
+
+  .hero-box h2 {
+    font-size: 2.8rem; /* RÉDUCTION CRUCIALE : Évite que le texte sorte de l'écran */
+    line-height: 1;
+    margin: 10px 0;
+  }
+
+  .hero-box p {
+    font-size: 1rem;
+    padding: 0 10px;
+  }
+
+  .glass-btn {
+    padding: 15px 30px;
+    font-size: 1rem;
+    width: 100%; /* Bouton pleine largeur pour le pouce */
+  }
+
+  /* 3. Sections & Layout */
+  section {
+    padding: 80px 5% 40px; /* Marges latérales réduites */
+  }
+
+  section h2 {
+    font-size: 28px;
+    text-align: center;
+  }
+
+  .grid {
+    grid-template-columns: 1fr; /* Une seule colonne */
+    gap: 20px;
+  }
+
+  /* 4. Tableaux & Résultats (Plus lisible) */
+  .table-container {
+    overflow-x: auto; /* Permet le swipe si le tableau est trop large */
+    -webkit-overflow-scrolling: touch;
+  }
+
+  table {
+    table-layout: auto; /* Laisse le tableau s'adapter au contenu */
+    min-width: 450px; /* Évite que les colonnes soient trop serrées */
+  }
+
+  th, td {
+    padding: 12px 8px;
+    font-size: 12px;
+  }
+
+  /* 5. Playoff Bracket (Scroll horizontal) */
+  .bracket {
+    min-width: 800px; /* Garde la structure du tournoi intacte */
+    justify-content: flex-start;
+    padding-left: 20px;
+  }
+
+  .dark-section {
+    padding: 60px 0;
+  }
+
+  /* 6. Formulaires */
+  form {
+    padding: 20px;
+  }
+
+  input, select, button.submit {
+    font-size: 16px; /* Évite le zoom automatique sur iOS */
+  }
+
+  /* 7. Finale & Trophée */
+  .trophy {
+    font-size: 45px;
+  }
+  
+  .champion-name {
+    font-size: 14px;
+    padding: 8px 15px;
+  }
+}
+
+/* Animation pour le menu mobile */
+@keyframes fadeInDown {
+  from { opacity: 0; transform: translateY(-10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+
+/* ===== FOOTER ORGANISATION ===== */
+.organization-block {
+  margin-bottom: 30px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.role-title {
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  color: var(--accent);
+  margin-bottom: 15px;
+  font-weight: 700;
+}
+
+.organizer-card {
+  display: flex;
+  align-items: center;
+  background: rgba(255, 255, 255, 0.05);
+  padding: 12px 25px;
+  border-radius: 15px;
+  text-decoration: none;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.organizer-avatar {
+  width: 40px;
+  height: 40px;
+  background: var(--primary);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 15px;
+  color: white;
+  font-size: 18px;
+}
+
+.organizer-info {
+  text-align: left;
+  margin-right: 20px;
+}
+
+.organizer-name {
+  display: block;
+  color: white;
+  font-weight: 700;
+  font-size: 16px;
+}
+
+.organizer-class {
+  display: block;
+  color: #aaa;
+  font-size: 12px;
+}
+
+.instagram-icon {
+  color: var(--accent);
+  font-size: 20px;
+  opacity: 0.6;
+  transition: 0.3s;
+}
+
+/* Effet au survol */
+.organizer-card:hover {
+  background: rgba(255, 255, 255, 0.1);
+  transform: scale(1.05);
+  border-color: var(--accent);
+}
+
+.organizer-card:hover .instagram-icon {
+  opacity: 1;
+  transform: rotate(15deg);
+}
+
+.footer-divider {
+  width: 60px;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--accent), transparent);
+  margin: 0 auto 25px;
+}
+
+/* Ajustement Mobile */
+@media (max-width: 768px) {
+  .organizer-card {
+    padding: 10px 15px;
+  }
+  
+  .brand {
+    font-size: 1.1rem;
+  }
+}
+/* ===== FOOTER PREMIUM ===== */
+footer {
+  background: var(--dark);
+  color: white;
+  position: relative;
+  padding: 60px 20px 30px;
+  overflow: hidden;
+}
+
+/* Petite barre de couleur en haut du footer */
+footer::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 4px;
+  background: linear-gradient(90deg, var(--primary), var(--accent), var(--secondary));
+}
+
+.footer-content {
+  max-width: 1100px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+/* Lien Instagram Stylisé */
+.instagram-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+  color: #eee;
+  font-weight: 500;
+  transition: 0.3s;
+  background: rgba(255, 255, 255, 0.05);
+  padding: 10px 20px;
+  border-radius: 50px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.instagram-link i {
+  color: var(--accent);
+  font-size: 1.4rem;
+}
+
+.instagram-link:hover {
+  background: var(--accent);
+  color: var(--dark);
+  transform: translateY(-3px);
+  box-shadow: 0 5px 15px rgba(32, 201, 151, 0.3);
+}
+
+/* Texte Principal */
+.footer-main {
+  margin-bottom: 30px;
+}
+
+.footer-divider {
+  width: 50px;
+  height: 2px;
+  background: var(--accent);
+  margin: 20px auto;
+  opacity: 0.5;
+}
+
+.brand {
+  font-size: 1.5rem;
+  font-weight: 800;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+.brand span {
+  color: var(--accent);
+}
+
+/* Texte de bas de page */
+.footer-bottom {
+  margin-top: 40px;
+  padding-top: 20px;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.subtitle {
+  font-size: 0.9rem;
+  color: #aaa;
+  margin: 0;
+}
+
+.subtitle strong {
+  color: #fff;
+}
+
+/* Bouton Retour en haut (Cercle discret) */
+.scroll-top {
+  width: 40px;
+  height: 40px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.scroll-top:hover {
+  background: var(--accent);
+  transform: scale(1.1);
+}
+
+/* Rendu Mobile */
+@media (max-width: 768px) {
+  footer {
+    padding: 40px 15px 20px;
+  }
+  
+  .footer-bottom {
+    flex-direction: column;
+    text-align: center;
+  }
+  
+  .brand {
+    font-size: 1.2rem;
+  }
+}

@@ -30,15 +30,21 @@
 
 <!-- HOME -->
 
-<section id="home">
-  <div class="hero">
-    <h2>VoetbalToernooi<br><span>   Handelsschool</span></h2>
-    <p>Het veld wacht op jou! Heb jij wat nodig is om de beker te pakken? 🔥 
-      De strijd begint hier, powered by de <strong>Leerlingenraad</strong>.
-
-   
-</p>
-    <button onclick="location.href='#inschrijving'">Schrijf je team in</button>
+<section id="home" class="pure-css-hero">
+  <div class="background-animate"></div>
+  
+  <div class="hero-box">
+    <div class="content-wrapper">
+      <span class="top-label">Tournament 2026</span>
+      <h2>Voetbal<br><span class="accent-text">Toernooi</span></h2>
+      <p>Claim je plek op het veld. Pak die beker. Schrijf geschiedenis! ⚡</p>
+      
+      <div class="btn-container">
+        <button class="glass-btn" onclick="location.href='#inschrijving'">
+          Schrijf je team in
+        </button>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -152,6 +158,106 @@
   </div>
 </section>
 
+
+<section id="playoffs" class="dark-section">
+  <h2>🏆 Knock-out Fase (Road to Victory)</h2>
+  
+  <div class="tournament-container">
+    <div class="bracket">
+      
+      <div class="round achtste">
+        <h3>Achtste Finales</h3>
+        
+        <div class="match-block">
+          <div class="team top winner">Team 1 <span class="score">3</span></div>
+          <div class="team bottom">Team 2 <span class="score">1</span></div>
+        </div>
+        
+        <div class="match-block">
+          <div class="team top">Team 3 <span class="score">0</span></div>
+          <div class="team bottom winner">Team 4 <span class="score">2</span></div>
+        </div>
+        
+        <div class="match-block">
+          <div class="team top winner">Team 5 <span class="score">1 (4)</span></div>
+          <div class="team bottom">Team 6 <span class="score">1 (3)</span></div>
+        </div>
+        
+        <div class="match-block">
+          <div class="team top">Team 7 <span class="score">2</span></div>
+          <div class="team bottom winner">Team 8 <span class="score">5</span></div>
+        </div>
+
+        <div class="match-block">
+          <div class="team top winner">Team 9 <span class="score">3</span></div>
+          <div class="team bottom">Team 10 <span class="score">0</span></div>
+        </div>
+        
+        <div class="match-block">
+          <div class="team top">Team 11 <span class="score">1</span></div>
+          <div class="team bottom winner">Team 12 <span class="score">2</span></div>
+        </div>
+        
+        <div class="match-block">
+          <div class="team top winner">Team 13 <span class="score">4</span></div>
+          <div class="team bottom">Team 14 <span class="score">1</span></div>
+        </div>
+        
+        <div class="match-block">
+          <div class="team top">Team 15 <span class="score">0</span></div>
+          <div class="team bottom winner">Team 16 <span class="score">3</span></div>
+        </div>
+      </div>
+      
+      <div class="round kwart">
+        <h3>Kwartfinales</h3>
+        <div class="match-block connect-left">
+          <div class="team top winner">Winnaar 1-2</div>
+          <div class="team bottom">Winnaar 3-4</div>
+        </div>
+        <div class="match-block connect-left">
+          <div class="team top">Winnaar 5-6</div>
+          <div class="team bottom winner">Winnaar 7-8</div>
+        </div>
+        <div class="match-block connect-left">
+          <div class="team top winner">Winnaar 9-10</div>
+          <div class="team bottom">Winnaar 11-12</div>
+        </div>
+        <div class="match-block connect-left">
+          <div class="team top">Winnaar 13-14</div>
+          <div class="team bottom winner">Winnaar 15-16</div>
+        </div>
+      </div>
+      
+      <div class="round halve">
+        <h3>Halve Finales</h3>
+        <div class="match-block connect-left connect-right">
+          <div class="team top winner">Semi 1</div>
+          <div class="team bottom">Semi 2</div>
+        </div>
+        <div class="match-block connect-left connect-right">
+          <div class="team top">Semi 3</div>
+          <div class="team bottom winner">Semi 4</div>
+        </div>
+      </div>
+      
+      <div class="round finale">
+        <h3>FINALE</h3>
+        <div class="match-block final-block">
+          <div class="team top grand-finalist">Finalist 1</div>
+          <div class="team bottom grand-finalist">Finalist 2</div>
+        </div>
+        
+        <div class="trophy-box">
+          <div class="trophy">🏆</div>
+          <div class="champion-name">KAMPION</div>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+</section>
+
 <!-- RESULTATEN -->
 <section id="resultaten">
   <h2>📊 Klassement</h2>
@@ -184,20 +290,35 @@
 <footer>
   <div class="footer-content">
     
-    <p> © 
-      <a href="https://www.instagram.com/brayaneftchrome7">
-        <i class="fa-brands fa-instagram fa-lg" style="color: #63E6BE;"> </i> 
-        Brayane.T 6ADB - 2026 
-      </a>  
-      <strong>Voetbaltoernooi Handelsschool</strong>
-      
-    </p>
-  
-    <p class="subtitle">Een initiatief van de Leerlingenraad | Schoolproject</p>
+    <div class="organization-block">
+      <p class="role-title">Organisatie & Design</p>
+      <a href="https://www.instagram.com/brayane_chrome7/" target="_blank" class="organizer-card">
+        <div class="organizer-avatar">
+           <i class="fa-solid fa-user-tie"></i> </div>
+        <div class="organizer-info">
+          <span class="organizer-name">Brayane.T</span>
+          <span class="organizer-class">Klas 6ADB — 2026</span>
+        </div>
+        <i class="fa-brands fa-instagram instagram-icon"></i>
+      </a>
+    </div>
+
+    <div class="footer-divider"></div>
+
+    <div class="footer-main">
+      <p class="brand">Voetbaltoernooi <span>Handelsschool</span></p>
+      <p class="subtitle">Een officieel initiatief van de <strong>Leerlingenraad</strong></p>
+    </div>
+
+    <div class="footer-bottom">
+      <p class="copyright">© 2026 — Alle rechten voorbehouden</p>
+      <div class="scroll-top" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">
+        <i class="fa-solid fa-chevron-up"></i>
+      </div>
+    </div>
+    
   </div>
 </footer>
-
-
 
 </body>
 </html>

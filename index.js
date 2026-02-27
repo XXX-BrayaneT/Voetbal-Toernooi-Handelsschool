@@ -87,12 +87,11 @@ if (form) {
       players: playersData
     };
 
-    // Changement ici : On utilise une requête standard pour lire la réponse du script
     fetch(SCRIPT_URL, {
       method: 'POST',
       body: JSON.stringify(dataToSend)
     })
-    .then(res => res.json()) // On attend un JSON du script
+    .then(res => res.json())
     .then(response => {
       if (response.status === "success") {
         alert("✅ Inschrijving geslaagd!");
@@ -102,14 +101,12 @@ if (form) {
         updateCounter();
         loadResults(); 
       } else {
-        // Affiche l'erreur de doublon envoyée par le Google Script
         alert("⚠️ " + response.message);
       }
     })
     .catch(error => {
       console.error('Fout!', error);
-      // En cas de bug réseau, on prévient l'utilisateur
-      alert("Er is een fout opgetreden. Controleer de tabel of probeer het opnieuw.");
+      alert("Er is een fout opgetreden.");
     })
     .finally(() => {
       submitBtn.disabled = false;
@@ -119,7 +116,6 @@ if (form) {
 }
 
 // --- LECTURE DES RÉSULTATS ---
-// --- LECTURE DES RÉSULTATS ET DES ÉQUIPES ---
 async function loadResults() {
   try {
     const response = await fetch(SCRIPT_URL);
@@ -147,23 +143,19 @@ async function loadResults() {
       }
     }
 
-    // 2. Remplir la Section des Équipes et Joueurs
+    // 2. Remplir la Section des Équipes
     const teamsContainer = document.getElementById("teams-container");
     if (teamsContainer) {
       teamsContainer.innerHTML = "";
-      if (!data.teams || data.teams.length === 0) {
-        teamsContainer.innerHTML = "<p>Nog geen teams ingeschreven.</p>";
-      } else {
+      if (data.teams && data.teams.length > 0) {
         data.teams.forEach(t => {
-          // On crée la liste des joueurs
           let playersHTML = t.players.map(p => {
             let icon = p.rol === "Kapitein" ? "👑" : "⚽";
             return `<li>${icon} <strong>${p.voornaam} ${p.naam}</strong> <span style="color:#666; font-size:12px;">(${p.klas})</span></li>`;
           }).join("");
           
-          // On crée la carte de l'équipe
           const teamCard = document.createElement("div");
-          teamCard.className = "card"; // On réutilise ton design "card"
+          teamCard.className = "card";
           teamCard.innerHTML = `
             <h3 style="color: var(--primary); border-bottom: 2px solid var(--accent); padding-bottom: 5px; margin-bottom: 10px;">🛡️ ${t.team}</h3>
             <ul style="list-style: none; padding-left: 0;">${playersHTML}</ul>
@@ -171,6 +163,40 @@ async function loadResults() {
           teamsContainer.appendChild(teamCard);
         });
       }
+    }
+
+    // 3. --- NOUVEAU : Remplir les Playoffs (Modèle Premium) ---
+    if (data.playoffs && data.playoffs.length > 0) {
+      const matchBlocks = document.querySelectorAll("#playoffs .match-block");
+
+      data.playoffs.forEach((match, index) => {
+        if (matchBlocks[index]) {
+          const t1 = match[1] || "TBD";
+          const s1 = match[2];
+          const s2 = match[3];
+          const t2 = match[4] || "TBD";
+
+          // On ajoute la classe "winner" si un score est plus élevé
+          const w1 = (s1 > s2) ? "winner" : "";
+          const w2 = (s2 > s1) ? "winner" : "";
+
+          // Injection dans ton modèle HTML exact
+          matchBlocks[index].innerHTML = `
+            <div class="team top ${w1}">${t1} <span class="score">${s1}</span></div>
+            <div class="team bottom ${w2}">${t2} <span class="score">${s2}</span></div>
+          `;
+
+          // Mise à jour du Champion (Match M15)
+          if (index === 14) {
+            const championName = document.querySelector(".champion-name");
+            if (s1 > 0 || s2 > 0) {
+              championName.innerText = (s1 > s2) ? t1 : t2;
+            } else {
+              championName.innerText = "KAMPION";
+            }
+          }
+        }
+      });
     }
 
   } catch (error) {
@@ -186,3 +212,20 @@ function toggleMenu() {
 }
 
 window.addEventListener('load', loadResults);
+
+document.addEventListener('mousemove', (e) => {
+    const moveX = (e.clientX - window.innerWidth / 2) / 50;
+    const moveY = (e.clientY - window.innerHeight / 2) / 50;
+
+    // Le titre bouge légèrement
+    const title = document.querySelector('.glitch-title');
+    if(title) {
+        title.style.transform = `translate(${-moveX}px, ${-moveY}px)`;
+    }
+
+    // Les projecteurs réagissent aussi
+    const spotlights = document.querySelectorAll('.spotlight');
+    spotlights.forEach(s => {
+        s.style.opacity = (Math.random() * (0.2 - 0.1) + 0.1); // Scintillement léger
+    });
+});
