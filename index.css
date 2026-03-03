@@ -1033,3 +1033,78 @@ footer::before {
     font-size: 1.2rem;
   }
 }
+
+#matches-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 20px;
+    padding: 20px;
+}
+
+.match-card {
+    background: #1a1a1a;
+    border-radius: 12px;
+    height: 160px;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    border: 1px solid rgba(255,255,255,0.1);
+}
+
+.teams-split {
+    display: flex;
+    height: 70%;
+    position: relative;
+}
+
+.team-side {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 800;
+    text-transform: uppercase;
+    color: white;
+}
+
+.side-a {
+    background: linear-gradient(135deg, #0b2e13 0%, #198754 100%);
+    clip-path: polygon(0 0, 100% 0, 85% 100%, 0% 100%);
+    padding-right: 15px;
+}
+
+.side-b {
+    background: #222;
+    margin-left: -10%;
+    padding-left: 10%;
+}
+
+.vs-badge {
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%) rotate(-10deg);
+    background: var(--accent);
+    color: black;
+    padding: 4px 8px;
+    font-weight: 900;
+    border-radius: 4px;
+    z-index: 10;
+}
+
+.match-info-bar {
+    height: 30%;
+    background: rgba(0,0,0,0.4);
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    font-size: 0.8rem;
+    color: #ccc;
+}
+
+/* Couleurs des Terrains */
+.veld-badge { padding: 2px 6px; border-radius: 4px; font-weight: bold; }
+.veld-a { color: #20c997; border: 1px solid #20c997; }
+.veld-b { color: #0d6efd; border: 1px solid #0d6efd; }
+.veld-c { color: #ffc107; border: 1px solid #ffc107; }
+.veld-d { color: #fd7e14; border: 1px solid #fd7e14; }
+
