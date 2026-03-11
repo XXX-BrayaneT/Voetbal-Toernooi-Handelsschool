@@ -144,22 +144,39 @@ async function loadResults() {
         const data = await response.json();
 
         // 1. Classement
+        // 1. Classement
+        // 1. Classement
         const tableBody = document.querySelector("#resultaten table tbody");
         if (tableBody) {
             tableBody.innerHTML = "";
             if (!data.competitie || data.competitie.length === 0) {
                 tableBody.innerHTML = "<tr><td colspan='7'>Wachten op de eerste wedstrijden...</td></tr>";
             } else {
-                data.competitie.forEach(row => {
+                // --- SORTEREN OP PUNTEN (Hoogste eerst) ---
+                const rankedCompetition = data.competitie.sort((a, b) => {
+                    const puntenA = parseInt(a[8]) || 0;
+                    const puntenB = parseInt(b[8]) || 0;
+                    const dsA = parseInt(a[7]) || 0; // Doelsaldo als back-up
+                    const dsB = parseInt(b[7]) || 0;
+
+                    // Eerst sorteren op Punten
+                    if (puntenB !== puntenA) {
+                        return puntenB - puntenA;
+                    }
+                    // Als de punten gelijk zijn, sorteren op Doelsaldo (DS)
+                    return dsB - dsA;
+                });
+
+                rankedCompetition.forEach(row => {
                     const tr = document.createElement("tr");
                     tr.innerHTML = `
-            <td><strong>${row[0]}</strong></td> 
-            <td>${row[1]}</td> 
-            <td>${row[2]}</td> 
-            <td>${row[3]}</td> 
-            <td>${row[4]}</td> 
-            <td>${row[7]}</td> 
-            <td><strong>${row[8]}</strong></td> `;
+                        <td><strong>${row[0]}</strong></td> 
+                        <td>${row[1]}</td> 
+                        <td>${row[2]}</td> 
+                        <td>${row[3]}</td> 
+                        <td>${row[4]}</td> 
+                        <td>${row[7]}</td> 
+                        <td><strong>${row[8]}</strong></td> `;
                     tableBody.appendChild(tr);
                 });
             }
@@ -268,7 +285,7 @@ if (premiumContainer && data.topscorers) {
 
     const sortedPlayers = data.topscorers
         .sort((a, b) => b.goals - a.goals || b.assists - a.assists)
-        .slice(0, 10);
+        .slice(0, 20);
 
     sortedPlayers.forEach((player, index) => {
         const rank = index + 1;
@@ -306,7 +323,7 @@ if (playersLeaderboard && data.topscorers) {
 // À mettre dans loadResults()
 const top10 = data.topscorers
     .sort((a, b) => b.goals - a.goals || b.assists - a.assists)
-    .slice(0, 10);
+    .slice(0, 20);
 
     top10.forEach((p, index) => {
         const rank = index + 1;
@@ -370,3 +387,39 @@ document.addEventListener('mousemove', (e) => {
         title.style.transform = `translate(${-moveX}px, ${-moveY}px)`;
     }
 });
+
+// Doeldatum: 20 maart 2026 om 12:15:00
+const targetDate = new Date("March 20, 2026 12:15:00").getTime();
+
+function updateTimer() {
+    const now = new Date().getTime();
+    const diff = targetDate - now;
+
+    // Als de tijd om is
+    if (diff <= 0) {
+        document.querySelector(".timer-card").innerHTML = "<h2 style='color:var(--accent); text-align:center; font-family:sans-serif;'>DE FINALE IS BEGONNEN! 🏆</h2>";
+        return;
+    }
+
+    // Berekeningen D / U / M / S
+    const d = Math.floor(diff / (1000 * 60 * 60 * 24));
+    const h = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    const m = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+    const s = Math.floor((diff % (1000 * 60)) / 1000);
+
+    // Weergave bijwerken
+    document.getElementById("days").innerText = d.toString().padStart(2, '0');
+    document.getElementById("hours").innerText = h.toString().padStart(2, '0');
+    document.getElementById("minutes").innerText = m.toString().padStart(2, '0');
+    document.getElementById("seconds").innerText = s.toString().padStart(2, '0');
+
+    // Optioneel: voortgangsbalk (gebaseerd op een startpunt van bijv. 7 dagen geleden)
+    const totalDuration = 7 * 24 * 60 * 60 * 1000; // 7 dagen in ms
+    const elapsed = totalDuration - diff;
+    const progress = Math.min(Math.max((elapsed / totalDuration) * 100, 0), 100);
+    document.getElementById("progress-bar").style.width = progress + "%";
+}
+
+// Update elke seconde
+setInterval(updateTimer, 1000);
+updateTimer();

@@ -283,28 +283,56 @@ footer a {
   background: rgba(255, 215, 0, 0.1);
 }
 
+
+
 @keyframes trophy-glow {
   from { filter: drop-shadow(0 0 5px #ffd700); }
   to { filter: drop-shadow(0 0 20px #ffae00); }
 }
 
 /* ===== LIGNES DE CONNEXION (PC uniquement) ===== */
-@media (min-width: 769px) {
-  /* Connection vers la droite (Quarts -> Demis, Demis -> Finale) */
-  .achtste .match-block::after {
-    content: ""; position: absolute; right: -11px; top: 50%;
-    width: 10px; height: 2px; background: rgba(255,255,255,0.2);
-  }
-  
-  .kwart .match-block::after {
-    content: ""; position: absolute; right: -11px; top: 50%;
-    width: 10px; height: 2px; background: rgba(255,255,255,0.2);
-  }
+/* ===== PLAYOFFS: CHAMPIONS LEAGUE STYLE ===== */
+/* ===== CHAMPIONS LEAGUE CONNECTORS - PERFECT ALIGNMENT ===== */
 
-  .halve .match-block::after {
-    content: ""; position: absolute; right: -11px; top: 50%;
-    width: 10px; height: 2px; background: rgba(255,255,255,0.2);
-  }
+.round {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around; 
+    width: 400px;
+    position: relative;
+    margin: 4rem;
+}
+
+/* 1. Ligne qui SORT des blocs (vers la droite) */
+.round.kwart .match-block::after,
+.round.halve .match-block::after {
+    content: "";
+    position: absolute;
+    right: -20px; /* Longueur précise */
+    top: 50%;
+    width: 20px;
+    height: 2px;
+    background: rgba(255, 255, 255, 0.4);
+    z-index: 1;
+}
+
+
+
+
+
+/* 2. La Vork (Ligne verticale) pour les Quarts */
+/* On cible le 1er et le 3e match pour descendre vers le suivant */
+.round.kwart .match-block:nth-child(odd)::before {
+    content: "";
+    position: absolute;
+    right: -20px;
+    top: 50%;
+    /* Calcule la distance exacte entre le milieu de deux matchs */
+    /* On prend 100% de la hauteur + l'espace (gap/margin) entre les blocs */
+    height: calc(100% + 34px); 
+    width: 2px;
+    background: rgba(255, 255, 255, 0.4);
+    z-index: 1;
 }
 
 
@@ -672,11 +700,10 @@ footer {
   section {
     padding: 100px 5% 40px;
   }
-} 
+
 
 /* ===== MOBILE DESIGN OPTIMISÉ (Max 768px) ===== */
-@media (max-width: 768px) {
-  /* 1. Header & Navigation */
+
   header {
     padding: 10px 20px;
   }
@@ -762,9 +789,9 @@ footer {
 
   table {
     table-layout: auto; /* Laisse le tableau s'adapter au contenu */
-    min-width: 450px; /* Évite que les colonnes soient trop serrées */
   }
 
+  
   th, td {
     padding: 12px 8px;
     font-size: 12px;
@@ -1385,4 +1412,291 @@ footer::before {
 @keyframes shine {
     0% { transform: translateX(-100%) rotate(45deg); }
     100% { transform: translateX(100%) rotate(45deg); }
+}
+
+#premium-leaderboard, #players-leaderboard {
+    max-height: 600px; /* Stel een hoogte in zodat de pagina niet oneindig lang wordt */
+    overflow-y: auto;  /* Voegt een scrollbar toe binnen de lijst */
+    padding-right: 10px;
+} 
+
+.round-date {
+    font-size: 0.8rem;
+    color: var(--accent);
+    margin-bottom: 15px;
+    text-align: center;
+}
+
+
+/* ===== RESPONSIVE & LEESBARE TIMER ===== */
+:root {
+    --accent-green: #20c997; /* De groene themakleur */
+    --text-dark: #222222;    /* Donkergrijs voor de cijfers */
+    --text-muted: #666666;   /* Iets lichter voor de labels */
+}
+
+.final-container {
+    padding: 40px 10px; /* Minder padding aan de zijkant voor mobiel */
+    display: flex;
+    justify-content: center;
+    background-color: #f8f9fa; /* Lichte achtergrond van de site */
+}
+
+.timer-card {
+    background: #ffffff;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    border-radius: 20px;
+    padding: 30px;
+    width: 100%;
+    max-width: 600px;
+    text-align: center;
+    position: relative;
+    /* Een zachte schaduw voor het "floating" effect */
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.05);
+}
+
+.timer-header {
+    font-weight: 700;
+    letter-spacing: 2px;
+    color: var(--accent-green); /* Groen voor de titel, dit is leesbaar op wit */
+    margin-bottom: 25px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+/* Tekstcontrole voor desktop/mobiel */
+.header-text-mobile { display: none; }
+.header-text-desktop { display: inline; }
+
+/* De Live indicator */
+.live-dot {
+    width: 10px;
+    height: 10px;
+    background: #ff4757;
+    border-radius: 50%;
+    animation: pulse-red 1.5s infinite;
+}
+
+@keyframes pulse-red {
+    0% { transform: scale(1); opacity: 1; }
+    50% { transform: scale(1.2); opacity: 0.5; }
+    100% { transform: scale(1); opacity: 1; }
+}
+
+.timer-grid {
+    display: flex;
+    justify-content: center;
+    align-items: baseline;
+    gap: 5px; /* Minder gap op mobiel */
+}
+
+.time-box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-width: 60px; /* Iets smaller voor mobiel */
+}
+
+.number {
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-size: 3.5rem; /* Groot op desktop */
+    font-weight: 900;
+    color: var(--text-dark); /* Donkergrijs: PERFECT LEESBAAR */
+    line-height: 1;
+    margin-bottom: 5px;
+}
+
+.label {
+    font-size: 10px;
+    font-weight: 600;
+    text-transform: uppercase;
+    color: var(--text-muted); /* Grijs: Goed leesbaar */
+    letter-spacing: 1px;
+}
+
+.sep {
+    font-size: 2.5rem;
+    font-weight: 200;
+    color: var(--text-dark); /* Donkergrijs */
+    opacity: 0.5;
+    margin-top: -10px;
+}
+
+/* Progressie bar */
+.progress-container {
+    width: 90%;
+    height: 6px;
+    background: rgba(0,0,0,0.05);
+    margin: 30px auto 0 auto;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, #198754, var(--accent-green));
+    width: 0%; /* Aangestuurd via JS */
+    border-radius: 10px;
+    transition: width 0.5s ease-out;
+}
+
+/* ===== MOBIELE RESPONSIVITEIT (Media Query) ===== */
+@media (max-width: 480px) {
+    .timer-card {
+        padding: 20px; /* Minder padding binnenin */
+    }
+
+    /* Tekst breekt af op mobiel */
+    .header-text-desktop { display: none; }
+    .header-text-mobile { 
+        display: inline; 
+        font-size: 11px; /* Iets kleiner */
+        letter-spacing: 1px;
+    }
+
+    .timer-grid {
+        gap: 2px; /* Bijna geen gap meer */
+    }
+
+    .time-box {
+        min-width: 50px; /* NOG smaller */
+    }
+
+    /* Cijfers worden kleiner zodat ze niet uit het kader lopen */
+    .number {
+        font-size: 2.2rem; /* Significant kleiner */
+    }
+
+    .sep {
+        font-size: 1.5rem;
+        margin-top: -5px;
+    }
+
+    .label {
+        font-size: 8px; /* Kleinere labels */
+    }
+}
+
+/* ===== MODERN GLASS-NEON TIMER ===== */
+:root {
+    --accent: #20c997; /* Jouw groene kleur */
+    --glass: rgba(255, 255, 255, 0.05);
+    --border: rgba(255, 255, 255, 0.1);
+}
+
+.final-container {
+    padding: 40px 20px;
+    display: flex;
+    justify-content: center;
+}
+
+.timer-card {
+    background: var(--glass);
+    backdrop-filter: blur(15px);
+    border: 1px solid var(--border);
+    border-radius: 24px;
+    padding: 40px;
+    width: 100%;
+    max-width: 650px;
+    text-align: center;
+    position: relative;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+    transition: transform 0.3s ease, border-color 0.3s ease;
+}
+
+/* Subtiele glow bij hover */
+.timer-card:hover {
+    border-color: var(--accent);
+    transform: translateY(-5px);
+}
+
+.timer-header {
+    font-size: 13px;
+    font-weight: 800;
+    letter-spacing: 5px;
+    color: var(--accent);
+    margin-bottom: 30px;
+    text-transform: uppercase;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+}
+
+/* De "Live" indicator */
+.live-dot {
+    width: 10px;
+    height: 10px;
+    background: #ff4757;
+    border-radius: 50%;
+    box-shadow: 0 0 10px #ff4757;
+    animation: pulse-red 1.5s infinite;
+}
+
+@keyframes pulse-red {
+    0% { transform: scale(1); opacity: 1; }
+    50% { transform: scale(1.3); opacity: 0.5; }
+    100% { transform: scale(1); opacity: 1; }
+}
+
+.timer-grid {
+    display: flex;
+    justify-content: center;
+    align-items: baseline;
+    gap: 15px;
+}
+
+.time-box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-width: 90px;
+}
+
+
+.label {
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.4);
+    letter-spacing: 2px;
+}
+
+.sep {
+    font-size: 2.5rem;
+    font-weight: 200;
+    color: var(--accent);
+    opacity: 0.8;
+    animation: blink-sep 1s infinite;
+}
+
+@keyframes blink-sep {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.2; }
+}
+
+/* Progressie balk onderaan de kaart */
+.progress-container {
+    width: 80%;
+    height: 4px;
+    background: rgba(255, 255, 255, 0.05);
+    margin: 35px auto 0 auto;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, transparent, var(--accent), transparent);
+    background-size: 200% 100%;
+    width: 50%; /* Dit wordt door JS aangestuurd */
+    animation: shimmer 2s infinite linear;
+    box-shadow: 0 0 15px var(--accent);
+}
+
+@keyframes shimmer {
+    0% { background-position: -200% 0; }
+    100% { background-position: 200% 0; }
 }

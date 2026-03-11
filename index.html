@@ -32,13 +32,48 @@
 
 <section id="home" class="pure-css-hero">
   <div class="background-animate"></div>
-  
   <div class="hero-box">
     <div class="content-wrapper">
+
       <span class="top-label">Tournament 2026</span>
-      <h2>Voetbal<br><span class="accent-text">Toernooi</span></h2>
-      <p>Claim je plek op het veld. Pak die beker. Schrijf geschiedenis! ⚡</p>
+
       
+      <h2>Voetbal<br><span class="accent-text">Toernooi</span></h2>
+      <div class="timer-card">
+          <div class="timer-header">
+              <span class="live-dot"></span>
+              <span class="header-text-desktop">AFTELLEN TOT DE GROTE FINALE</span>
+              <span class="header-text-mobile">AFTELLEN TOT DE<br>GROTE FINALE</span>
+          </div>
+          
+          <div id="countdown" class="timer-grid">
+              <div class="time-box">
+                  <span id="days" class="number">00</span>
+                  <span class="label">Dagen</span>
+              </div>
+              <div class="sep">:</div>
+              <div class="time-box">
+                  <span id="hours" class="number">00</span>
+                  <span class="label">Uur</span>
+              </div>
+              <div class="sep">:</div>
+              <div class="time-box">
+                  <span id="minutes" class="number">00</span>
+                  <span class="label">Min</span>
+              </div>
+              <div class="sep">:</div>
+              <div class="time-box">
+                  <span id="seconds" class="number">00</span>
+                  <span class="label">Sec</span>
+              </div>
+          </div>
+          
+          <div class="progress-container">
+              <div id="progress-bar" class="progress-fill"></div>
+          </div>
+      </div>
+
+      <p>Claim je plek op het veld. Pak die beker. Schrijf geschiedenis! ⚡</p>
       <div class="btn-container">
         <button class="glass-btn" onclick="location.href='#inschrijving'">
           Schrijf je team in
@@ -67,7 +102,7 @@
     <h3>⚽ Wedstrijd & Toernooi</h3>
     <p>We spelen <strong>5 tegen 5</strong> (4 veldspelers + 1 keeper) in de sporthal.</p>
     <ul>
-      <li><strong>Duur:</strong> 2 × 5 minuten (pauze van 1 minuut).</li>
+      <li><strong>Duur:</strong> 2 × 7 minuten (pauze van 1 minuut).</li>
       <li><strong>Punten:</strong> Winst = 3 ptn | Gelijk = 1 pt | Verlies = 0 ptn.</li>
       <li><strong>Systeem:</strong> Eerst een poulefase, gevolgd door rechtstreekse uitschakeling.</li>
       <li><strong>Wissels:</strong> Onbeperkt, maar enkel tijdens een spelonderbreking.</li>
@@ -76,7 +111,7 @@
 
   <div class="card">
     <h3>🕒 Timing & Locatie</h3>
-    <p>De wedstrijden gaan door op <strong>dinsdag en donderdag</strong> tijdens de middagpauze.</p>
+    <p>De wedstrijden gaan door op <strong>Maandag , dinsdag , donderdag en vrijdag</strong> tijdens de middagpauze.</p>
     <div class="schedule">
       <p><strong>12u05:</strong> Toegang kleedkamers</p>
       <p><strong>12u15:</strong> Start wedstrijd</p>
@@ -177,85 +212,55 @@
   <div class="tournament-container">
     <div class="bracket">
       
-      <div class="round achtste">
-        <h3>Achtste Finales</h3>
-        
-        <div class="match-block">
-          <div class="team top winner">Team 1 <span class="score">3</span></div>
-          <div class="team bottom">Team 2 <span class="score">1</span></div>
-        </div>
-        
-        <div class="match-block">
-          <div class="team top">Team 3 <span class="score">0</span></div>
-          <div class="team bottom winner">Team 4 <span class="score">2</span></div>
-        </div>
-        
-        <div class="match-block">
-          <div class="team top winner">Team 5 <span class="score">1 (4)</span></div>
-          <div class="team bottom">Team 6 <span class="score">1 (3)</span></div>
-        </div>
-        
-        <div class="match-block">
-          <div class="team top">Team 7 <span class="score">2</span></div>
-          <div class="team bottom winner">Team 8 <span class="score">5</span></div>
-        </div>
-
-        <div class="match-block">
-          <div class="team top winner">Team 9 <span class="score">3</span></div>
-          <div class="team bottom">Team 10 <span class="score">0</span></div>
-        </div>
-        
-        <div class="match-block">
-          <div class="team top">Team 11 <span class="score">1</span></div>
-          <div class="team bottom winner">Team 12 <span class="score">2</span></div>
-        </div>
-        
-        <div class="match-block">
-          <div class="team top winner">Team 13 <span class="score">4</span></div>
-          <div class="team bottom">Team 14 <span class="score">1</span></div>
-        </div>
-        
-        <div class="match-block">
-          <div class="team top">Team 15 <span class="score">0</span></div>
-          <div class="team bottom winner">Team 16 <span class="score">3</span></div>
-        </div>
-      </div>
-      
       <div class="round kwart">
         <h3>Kwartfinales</h3>
-        <div class="match-block connect-left">
-          <div class="team top winner">Winnaar 1-2</div>
-          <div class="team bottom">Winnaar 3-4</div>
+        <p class="round-date">Maandag 16 & Dinsdag 17 Maart</p>
+        
+        <div class="match-block">
+          <div class="match-info">Match 1</div>
+          <div class="team top">1ste Poule</div>
+          <div class="team bottom">8ste Poule</div>
         </div>
-        <div class="match-block connect-left">
-          <div class="team top">Winnaar 5-6</div>
-          <div class="team bottom winner">Winnaar 7-8</div>
+        
+        <div class="match-block">
+          <div class="match-info">Match 2</div>
+          <div class="team top">4de Poule</div>
+          <div class="team bottom">5de Poule</div>
         </div>
-        <div class="match-block connect-left">
-          <div class="team top winner">Winnaar 9-10</div>
-          <div class="team bottom">Winnaar 11-12</div>
+        
+        <div class="match-block">
+          <div class="match-info">Match 3</div>
+          <div class="team top">2de Poule</div>
+          <div class="team bottom">7de Poule</div>
         </div>
-        <div class="match-block connect-left">
-          <div class="team top">Winnaar 13-14</div>
-          <div class="team bottom winner">Winnaar 15-16</div>
+        
+        <div class="match-block">
+          <div class="match-info">Match 4</div>
+          <div class="team top">3de Poule</div>
+          <div class="team bottom">6de Poule</div>
         </div>
       </div>
       
       <div class="round halve">
         <h3>Halve Finales</h3>
-        <div class="match-block connect-left connect-right">
-          <div class="team top winner">Semi 1</div>
-          <div class="team bottom">Semi 2</div>
+       
+        
+        <div class="match-block connect-left">
+          <div class="team top">Winnaar M1</div>
+          <div class="team bottom">Winnaar M2</div>
         </div>
-        <div class="match-block connect-left connect-right">
-          <div class="team top">Semi 3</div>
-          <div class="team bottom winner">Semi 4</div>
+        
+        <div class="match-block connect-left">
+          <div class="team top">Winnaar M3</div>
+          <div class="team bottom">Winnaar M4</div>
         </div>
       </div>
       
       <div class="round finale">
         <h3>FINALE</h3>
-        <div class="match-block final-block">
+        <p class="round-date">Vrijdag 20 Maart</p>
+        
+        <div class="match-block final-block connect-left">
           <div class="team top grand-finalist">Finalist 1</div>
           <div class="team bottom grand-finalist">Finalist 2</div>
         </div>
