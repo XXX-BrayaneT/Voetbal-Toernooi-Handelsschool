@@ -285,7 +285,7 @@ if (premiumContainer && data.topscorers) {
 
     const sortedPlayers = data.topscorers
         .sort((a, b) => b.goals - a.goals || b.assists - a.assists)
-        .slice(0, 20);
+        .slice(0, 25);
 
     sortedPlayers.forEach((player, index) => {
         const rank = index + 1;
@@ -323,7 +323,7 @@ if (playersLeaderboard && data.topscorers) {
 // À mettre dans loadResults()
 const top10 = data.topscorers
     .sort((a, b) => b.goals - a.goals || b.assists - a.assists)
-    .slice(0, 20);
+    .slice(0, 25);
 
     top10.forEach((p, index) => {
         const rank = index + 1;
@@ -389,34 +389,37 @@ document.addEventListener('mousemove', (e) => {
 });
 
 // Doeldatum: 20 maart 2026 om 12:15:00
-const targetDate = new Date("March 20, 2026 12:15:00").getTime();
+// 1. Définir les dates clés
+const startDate = new Date("March 16, 2026 08:00:00").getTime(); // Date de début du tournoi
+const targetDate = new Date("March 23, 2026 12:15:00").getTime(); // Nouvelle date de la finale
 
 function updateTimer() {
     const now = new Date().getTime();
     const diff = targetDate - now;
 
-    // Als de tijd om is
+    // Si le temps est écoulé
     if (diff <= 0) {
         document.querySelector(".timer-card").innerHTML = "<h2 style='color:var(--accent); text-align:center; font-family:sans-serif;'>DE FINALE IS BEGONNEN! 🏆</h2>";
         return;
     }
 
-    // Berekeningen D / U / M / S
+    // Calculs Jours / Heures / Minutes / Secondes
     const d = Math.floor(diff / (1000 * 60 * 60 * 24));
     const h = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
     const m = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
     const s = Math.floor((diff % (1000 * 60)) / 1000);
 
-    // Weergave bijwerken
+    // Mise à jour de l'affichage
     document.getElementById("days").innerText = d.toString().padStart(2, '0');
     document.getElementById("hours").innerText = h.toString().padStart(2, '0');
     document.getElementById("minutes").innerText = m.toString().padStart(2, '0');
     document.getElementById("seconds").innerText = s.toString().padStart(2, '0');
 
-    // Optioneel: voortgangsbalk (gebaseerd op een startpunt van bijv. 7 dagen geleden)
-    const totalDuration = 7 * 24 * 60 * 60 * 1000; // 7 dagen in ms
-    const elapsed = totalDuration - diff;
+    // FIX BARRE DE PROGRESSION
+    const totalDuration = targetDate - startDate; // Durée totale réelle entre début et fin
+    const elapsed = now - startDate; // Temps écoulé depuis le début
     const progress = Math.min(Math.max((elapsed / totalDuration) * 100, 0), 100);
+    
     document.getElementById("progress-bar").style.width = progress + "%";
 }
 

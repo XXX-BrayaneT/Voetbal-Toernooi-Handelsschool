@@ -1579,103 +1579,6 @@ footer::before {
     }
 }
 
-/* ===== MODERN GLASS-NEON TIMER ===== */
-:root {
-    --accent: #20c997; /* Jouw groene kleur */
-    --glass: rgba(255, 255, 255, 0.05);
-    --border: rgba(255, 255, 255, 0.1);
-}
-
-.final-container {
-    padding: 40px 20px;
-    display: flex;
-    justify-content: center;
-}
-
-.timer-card {
-    background: var(--glass);
-    backdrop-filter: blur(15px);
-    border: 1px solid var(--border);
-    border-radius: 24px;
-    padding: 40px;
-    width: 100%;
-    max-width: 650px;
-    text-align: center;
-    position: relative;
-    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
-    transition: transform 0.3s ease, border-color 0.3s ease;
-}
-
-/* Subtiele glow bij hover */
-.timer-card:hover {
-    border-color: var(--accent);
-    transform: translateY(-5px);
-}
-
-.timer-header {
-    font-size: 13px;
-    font-weight: 800;
-    letter-spacing: 5px;
-    color: var(--accent);
-    margin-bottom: 30px;
-    text-transform: uppercase;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 12px;
-}
-
-/* De "Live" indicator */
-.live-dot {
-    width: 10px;
-    height: 10px;
-    background: #ff4757;
-    border-radius: 50%;
-    box-shadow: 0 0 10px #ff4757;
-    animation: pulse-red 1.5s infinite;
-}
-
-@keyframes pulse-red {
-    0% { transform: scale(1); opacity: 1; }
-    50% { transform: scale(1.3); opacity: 0.5; }
-    100% { transform: scale(1); opacity: 1; }
-}
-
-.timer-grid {
-    display: flex;
-    justify-content: center;
-    align-items: baseline;
-    gap: 15px;
-}
-
-.time-box {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    min-width: 90px;
-}
-
-
-.label {
-    font-size: 11px;
-    font-weight: 700;
-    text-transform: uppercase;
-    color: rgba(255, 255, 255, 0.4);
-    letter-spacing: 2px;
-}
-
-.sep {
-    font-size: 2.5rem;
-    font-weight: 200;
-    color: var(--accent);
-    opacity: 0.8;
-    animation: blink-sep 1s infinite;
-}
-
-@keyframes blink-sep {
-    0%, 100% { opacity: 1; }
-    50% { opacity: 0.2; }
-}
 
 /* Progressie balk onderaan de kaart */
 .progress-container {
@@ -1699,4 +1602,180 @@ footer::before {
 @keyframes shimmer {
     0% { background-position: -200% 0; }
     100% { background-position: 200% 0; }
+}
+
+
+
+.medals-container {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    padding: 40px;
+    flex-wrap: wrap;
+}
+
+.medal-box {
+    text-align: center;
+    perspective: 1000px;
+}
+
+/* Algemene stijl van de medaille */
+.medal {
+    width: 140px;
+    height: 140px;
+    border-radius: 50%;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 
+        inset 0 0 15px rgba(255,255,255,0.5),
+        0 10px 20px rgba(0,0,0,0.4);
+    border: 4px solid rgba(0,0,0,0.1);
+}
+
+/* Het gat (crou) voor het lint */
+.medal-ring {
+    position: absolute;
+    top: -15px;
+    width: 30px;
+    height: 30px;
+    background: inherit;
+    border-radius: 50%;
+    border: 4px solid rgba(0,0,0,0.1);
+    box-shadow: inset 0 5px 5px rgba(0,0,0,0.3);
+}
+
+.medal-ring::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 12px;
+    height: 12px;
+    background: #000; /* Dit lijkt op een echt gat */
+    border-radius: 50%;
+}
+
+/* Goud Effect */
+.gold {
+    background: radial-gradient(circle, #ffe477 0%, #ffc107 60%, #b8860b 100%);
+}
+
+/* Zilver Effect */
+.silver {
+    background: radial-gradient(circle, #ffffff 0%, #d3d3d3 60%, #808080 100%);
+}
+
+.medal-inner {
+    width: 85%;
+    height: 85%;
+    border: 2px dashed rgba(0,0,0,0.1);
+    border-radius: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.medal-logo {
+    width: 40px;
+    height: 40px;
+    opacity: 0.8;
+    margin-bottom: 5px;
+    filter: grayscale(100%) contrast(150%);
+}
+
+.medal-text {
+    color: rgba(0,0,0,0.7);
+    font-family: 'Arial Black', sans-serif;
+}
+
+.rank {
+    font-size: 28px;
+    display: block;
+    line-height: 1;
+}
+
+.rank span { font-size: 14px; }
+
+.status {
+    font-size: 10px;
+    letter-spacing: 1px;
+    font-weight: bold;
+}
+
+.medal-label {
+    margin-top: 25px;
+    color: #fff;
+    font-weight: bold;
+    text-transform: uppercase;
+    font-size: 12px;
+}
+
+
+
+/* Effet Top Player (MVP) */
+.mvp {
+    background: radial-gradient(circle, #00d2ff 0%, #3a7bd5 60%, #004e92 100%);
+    box-shadow: 0 0 20px rgba(0, 210, 255, 0.5); /* Petit effet de lueur */
+}
+
+/* On s'assure que les 3 médailles tiennent sur une ligne sur desktop */
+.medals-container {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    flex-wrap: wrap; /* Pour que ça passe à la ligne sur mobile */
+    padding: 20px;
+}
+
+
+/* Conteneur principal aligné pour un podium */
+.medals-container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: center;
+    align-items: flex-end; /* Aligne les boîtes par le bas pour créer l'effet marche */
+    gap: 10px;
+    width: 100%;
+    padding: 40px 5px 20px 5px; /* Plus d'espace en haut pour la marche du milieu */
+    overflow-x: hidden;
+}
+
+/* Configuration de chaque boîte de médaille */
+.medal-box {
+    flex: 1;
+    max-width: 110px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    transition: transform 0.3s ease;
+}
+
+/* --- EFFET DE MARCHES --- */
+
+/* 1st Place (Milieu) : On la monte plus haut */
+.medal-box:nth-child(1) { 
+    order: 2; /* Place la médaille d'Or au milieu visuellement */
+    transform: translateY(-30px); /* La soulève de 25 pixels */
+}
+
+/* 2de Place (Gauche) : Niveau normal */
+.medal-box:nth-child(2) {
+    order: 1; /* Place la médaille d'Argent à gauche */
+}
+
+/* MVP (Droite) : Même niveau que 2de */
+.medal-box:nth-child(3) {
+    order: 3; /* Place la médaille MVP à droite */
+}
+
+/* Style de la médaille MVP (Bleu) si tu ne l'as pas encore mis */
+.mvp {
+    background: radial-gradient(circle, #00d2ff 0%, #3a7bd5 60%, #004e92 100%);
+    box-shadow: 0 0 15px rgba(0, 78, 146, 0.4);
 }
